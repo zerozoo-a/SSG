@@ -3,7 +3,7 @@ name: Build Eleventy
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -14,21 +14,20 @@ jobs:
         node-version: [19.x]
 
     steps:
-          - name: Checkout
-          - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-          - name: Use Node.js ver = ${{ matrix.node-version }}
-            uses: actions/setup-node@v3
-            with:
-              node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-          - name: Install dependencies & build
-            run: |
-              npm ci
-              npm run build-ghpages          
+      - name: Install dependencies & build
+        run: |
+          npm ci
+          npm run build-ghpages          
 
-          - name: Deploy
-            uses: peaceiris/actions-gh-pages@v3
-            with:
-              publish_dir: ./_site
-              github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./_site
+          github_token: ${{ secrets.GITHUB_TOKEN }}
