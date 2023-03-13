@@ -23,6 +23,7 @@ jobs:
 
       - name: Install dependencies & build
         run: |
+          npm -v
           npm ci
           npm run build-ghpages          
 
