@@ -8,7 +8,7 @@ draft: true
 
 ```js
 const hi = () => {
-    console.log('hi!')
+    console.log('hi world!')
 }
 
 ```
