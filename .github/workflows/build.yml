@@ -13,26 +13,26 @@ jobs:
       matrix:
         node-version: [19.x]
 
-steps:
-# 현재의 commit HEAD에 위치함
-  - name: Checkout
-  - uses: actions/checkout@v3
+    steps:
+        # 현재의 commit HEAD에 위치함
+          - name: Checkout
+          - uses: actions/checkout@v3
 
-# node 버전을 최신으로 맞춤
-  - name: Use Node.js ver = ${{ matrix.node-version }}
-    uses: actions/setup-node@v3
-    with:
-      node-version: ${{ matrix.node-version }}
+        # node 버전을 최신으로 맞춤
+          - name: Use Node.js ver = ${{ matrix.node-version }}
+            uses: actions/setup-node@v3
+            with:
+              node-version: ${{ matrix.node-version }}
 
-# build
-  - name: Install dependencies & build
-    run: |
-      npm ci
-      npm run build-ghpages          
+        # build
+          - name: Install dependencies & build
+            run: |
+              npm ci
+              npm run build-ghpages          
 
-# 배포합니다.
-  - name: Deploy
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      publish_dir: ./_site
-      github_token: ${{ secrets.GITHUB_TOKEN }}
+        # 배포합니다.
+          - name: Deploy
+            uses: peaceiris/actions-gh-pages@v3
+            with:
+              publish_dir: ./_site
+              github_token: ${{ secrets.GITHUB_TOKEN }}
